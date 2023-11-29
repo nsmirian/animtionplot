@@ -25,8 +25,18 @@ def animate(i):
     XFGM_DP='FLASH.FEL/XGM.INTENSITY/FL2.TUNNEL/INTENSITY.RAW.TRAIN'
     y = pydoocs.read( XFGM_DP )["data"]
 
+    graph_data = open('data.txt', 'a+').read()
+    graph_data.write(x, y)
+    lines = graph_data.split('\n')
+    xs = []
+    ys = []
+    for line in lines:
+        if len(line) > 1:
+            x, y = line.split(',')
+            xs.append(float(x))
+            ys.append(float(y))
     ax1.clear()
-    ax1.plot(x, y, 'o')
+    ax1.plot(xs, ys)
 
 
 
